@@ -18,7 +18,7 @@ Small knowledge how to wire Raspberry Pi.
 + Hitachi hd44780 LCD panel (or clone)
 + 220 Ohm resistor
 + 10k Ohm Potentiometer
-+ 11 atleast wires
++ atleast 11 wires
 + Breadboard
 
 ### Wiring
