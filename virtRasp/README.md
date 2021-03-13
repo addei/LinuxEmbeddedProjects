@@ -3,7 +3,7 @@ ___
 
 ## Summary
 
-Software development for the specific device can be tedious, especially when you don't own the hardware or project is too heavy/large to compile on it. One convenient solution is to use virtual machine for this job. This means the user must set up a virtual environment, configure the virtual machine and install build tools on it. In this guide I detail the process of installation and configuration of such a virtual device.
+Software development for the specific device can be tedious, especially when you don't own the hardware. One convenient solution is to use virtual machine for this job. This means the user must set up a virtual environment, configure the virtual machine and install build tools on it. In this guide I detail the process of installation and configuration of such a virtual device.
 ___
 ## Requirements
 + OpenSUSE Tumbleweed
@@ -215,13 +215,23 @@ More info about QEMU networking: https://wiki.qemu.org/Documentation/Networking
 
 Tip: creating launch script for the QEMU makes launching the virtual machine far more easier.
 
-User can also allow graphics on the virtual machine by removing the `-nographic` and adding approriate lines for cursor handling.
+User can also allow graphics on the virtual machine by removing the `-nographic` and adding approriate lines for the cursor/display handling.
 
 ## First time boot up
+
+After the first boot, the user should run raspi-config and adjust the settings for the device. Here is a list of things user should consider:
+
+1. Boot Options -> set text console as default
+2. Interfacing Options -> Enable SSH server
+3. Advanced Options -> Expand Filesystem
+
+__*Click on the image to see a video of configuring the Raspberry Pi OS.*__
 
 [![Link to the video](pictures/first_time_boot.png)](https://user-images.githubusercontent.com/47223277/111039836-d5817c00-8438-11eb-89df-aadbfe378f43.mp4)
 
 ## Tests
+
+__*Click on the image to see a video of the test.*__ 
 
 #### Ping tests between the client and the host machine.
 
