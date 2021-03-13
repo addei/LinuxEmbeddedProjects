@@ -43,7 +43,7 @@ GUI            |  CLI
 
 
 ### 3. Build from the source (not recommended)
-It is possible to build necessery packages from the source. This is more advanced way to do it, and usually not recommended as it means user needs to maintain packages by themselves.
+It is possible to build necessary packages from the source. This is more advanced way to do it, and usually not recommended as it means user needs to maintain packages by themselves.
 
 
 ### Add user to kvm group 
@@ -61,7 +61,7 @@ Official 64-bit images can be found from this ftp-server https://downloads.raspb
 
     //create project folder and change directory to it
     # mkdir rasp
-    # cd raspsystems
+    # cd rasp
 
     //download the image and sha256 hashfile
     # wget https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-2020-08-24/2020-08-20-raspios-buster-arm64.zip
@@ -94,7 +94,7 @@ As shown in the picture above, our size of the sector is 512 bytes and first par
 
 Copy files `bcm2710-rpi-3-b.dtb` and `kernel8.img` from the first partition (.img1):
 
-    //make temporaly mountpoint
+    //make temporary mountpoint
     # mkdir /tmp/temp
 
     //make folder for the files 
@@ -152,7 +152,7 @@ Setting up socket does not need any configuration on the host device and thus ma
 
 Connection bridging allows full network functionality on the client system (virtual machine). QEMU creates tap on boot which is then attached to the bridge and used by the virtual machine (client).
 
-Network tap for the client needs some level of configuration on the host system. User needs to create a bridge on network card interface, flush old settigs and start dhclient service on the bridge. This ensures connection between the host and the client and provides connections outside equally.
+Network tap for the client needs some level of configuration on the host system. User needs to create a bridge on network card interface, flush old settings and start dhclient service on the bridge. This ensures connection between the host and the client and provides connections outside equally.
 
     //setting up a bridge and attach network interface to it
     $ ip link add name bridge_name type bridge
@@ -219,22 +219,256 @@ User can also allow graphics on the virtual machine by removing the `-nographic`
 
 ## First time boot up
 
-[![IMAGE ALT TEXT HERE](pictures/first_time_boot.png)](https://user-images.githubusercontent.com/47223277/111039836-d5817c00-8438-11eb-89df-aadbfe378f43.mp4)
+[![Link to the video](pictures/first_time_boot.png)](https://user-images.githubusercontent.com/47223277/111039836-d5817c00-8438-11eb-89df-aadbfe378f43.mp4)
 
 ## Tests
 
 #### Ping tests between the client and the host machine.
 
-[![IMAGE ALT TEXT HERE](pictures/ping_test.png)](https://user-images.githubusercontent.com/47223277/111039831-d0243180-8438-11eb-966e-ab00084c0d43.mp4)
+[![Link to the video](pictures/ping_test.png)](https://user-images.githubusercontent.com/47223277/111039831-d0243180-8438-11eb-966e-ab00084c0d43.mp4)
 
 #### Neofetch installation on the client machine.
 
-[![IMAGE ALT TEXT HERE](pictures/install_programs.png)](https://user-images.githubusercontent.com/47223277/111039818-c4d10600-8438-11eb-9620-dee56c6f3ae7.mp4)
+[![Link to the video](pictures/install_programs.png)](https://user-images.githubusercontent.com/47223277/111039818-c4d10600-8438-11eb-9620-dee56c6f3ae7.mp4)
 
 #### File transfer + executing 64-bit aarch64 binary blop
 
-[![IMAGE ALT TEXT HERE](pictures/scp_binary_blop.png)](https://user-images.githubusercontent.com/47223277/111039810-b7b41700-8438-11eb-894e-568019a7f9af.mp4)
+[![Link to the video](pictures/scp_binary_blop.png)](https://user-images.githubusercontent.com/47223277/111039810-b7b41700-8438-11eb-894e-568019a7f9af.mp4)
 
 #### 
 
 ## End notes
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@addei
+Your GitHub academic discount coupon has expired
+
+    If you’re still eligible, you may re-apply.
+    If you’re no longer eligible, you may either update your payment information, or downgrade your account.
+
+If you have any questions, please contact GitHub Education.
+addei /
+LinuxEmbeddedProjects
+
+1
+0
+
+    0
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+
+    Settings
+
+LinuxEmbeddedProjects/virtRasp/
+in
+main
+
+1
+
+# Guide on how to emulate Raspberry Pi OS (aarch64) on openSUSE Tumbleweed (x86-64) by using QEMU
+
+2
+
+___
+
+3
+
+​
+
+4
+
+## Summary
+
+5
+
+​
+
+6
+
+Software development for the specific device can be tedious, especially when you don't own the hardware or project is too heavy/large to compile on it. One convenient solution is to use virtual machine for this job. This means the user must set up a virtual environment, configure the virtual machine and install build tools on it. In this guide I detail the process of installation and configuration of such a virtual device.
+
+7
+
+___
+
+8
+
+## Requirements
+
+9
+
++ OpenSUSE Tumbleweed
+
+10
+
++ Basic knowledge on GNU/Linux operating systems and hardware virtualization
+
+11
+
++ Processor capable for emulation
+
+12
+
++ enough ram for the guest system
+
+13
+
++ enough system disk space for the quest system
+
+14
+
+___
+
+15
+
+## Host installation
+
+16
+
+​
+
+17
+
+There are three different ways to install Qemu and required dependencies in openSUSE. These are listed below from easiest to hardest:
+
+18
+
+ 
+
+19
+
+1. Zypper (CLI)
+
+20
+
+2. YaST Software Management (CLI + GUI)
+
+21
+
+3. Build from the source (not recommended)
+
+22
+
+​
+
+23
+
+#### 1. Zypper (CLI)
+
+24
+
+Easiest way to install latest dependencies for QEMU in OpenSUSE Tumbleweed is using system package manager. In openSUSE this is called Zypper.
+
+25
+
+    
+
+26
+
+    // install qemu-arm
+
+27
+
+    $ zypper in qemu-arm
+
+28
+
+Zypper downloads all the other required dependencies for the qemu-arm virtualization.
+
+29
+
+​
+
+30
+
+#### 2. YaST Software Management (CLI + GUI)
+
+31
+
+​
+
+32
+
+YaST provides easy to use frontend for installing software on OpenSUSE.
+
+33
+
+​
+
+34
+
+Package needed: `qemu-arm`
+
+35
+
+​
+
+36
+
+YaST Software Management tool downloads all the other required dependencies for the qemu-arm virtualization.
+
+37
+
+​
+
+38
+
+​
+
+39
+
+GUI            |  CLI
+
+40
+
+:-------------------------:|:-------------------------:
+
+41
+
+![YaST Software Management - QEMU-ARM GUI](pictures/yast_swm_gui.png "YaST Software Management - QEMU-ARM GUI")  |  ![YaST Software Management - QEMU-ARM CLI](pictures/yast_swm_cli.png "YaST Software Management - QEMU-ARM CLI")
+
+42
+
+​
+
+43
+
+​
+
+44
+
+​
+
+Attach files by dragging & dropping, selecting or pasting them.
+@addei
+Commit changes
+Commit summary
+Optional extended description
+Commit directly to the main branch.
+Create a new branch for this commit and start a pull request. Learn more about pull requests.
+
+    © 2021 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
+
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
