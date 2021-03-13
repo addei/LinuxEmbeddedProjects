@@ -219,37 +219,22 @@ User can also allow graphics on the virtual machine by removing the `-nographic`
 
 ## First time boot up
 
-<figure class="video_container">
-    <video controls="true" allowfullscreen="true">
-        <source src="videos/first_time_boot.mp4" type="video/mp4">
-    </video>
-</figure>
+https://user-images.githubusercontent.com/47223277/111039836-d5817c00-8438-11eb-89df-aadbfe378f43.mp4
 
 ## Tests
 
 #### Ping tests between the client and the host machine.
 
-<figure>
-    <video controls="true" allowfullscreen="true">
-        <source src="videos/ping_test.mp4" type="video/mp4">
-    </video>
-</figure>
+https://user-images.githubusercontent.com/47223277/111039831-d0243180-8438-11eb-966e-ab00084c0d43.mp4
+
 
 #### Neofetch installation on the client machine.
 
-<figure>
-    <video controls="true" allowfullscreen="true">
-        <source src="videos/install_programs.mp4" type="video/mp4">
-    </video>
-</figure>
+https://user-images.githubusercontent.com/47223277/111039818-c4d10600-8438-11eb-9620-dee56c6f3ae7.mp4
 
 #### File transfer + executing 64-bit aarch64 binary blop
 
-<figure>
-    <video controls="true" allowfullscreen="true">
-        <source src="videos/scp_binary_blop.mp4" type="video/mp4">
-    </video>
-</figure>
+https://user-images.githubusercontent.com/47223277/111039810-b7b41700-8438-11eb-894e-568019a7f9af.mp4
 
 #### 
 
