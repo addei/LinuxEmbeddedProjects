@@ -1,6 +1,10 @@
 # LinuxEmbeddedProjects
 
 Repository for small embedded Linux projects I built during my student days.
+
+**Course:** Managing Linux Systems with Embedded Perspective (TX00DG08-3005)  
+**School:** Metropolia University of Applied Sciences
+
 All projects are provided under the [GNU General Public License v2.0](./LICENSE).
 
 ## Contents
